@@ -1,0 +1,16 @@
+{%extends 'base.html' %}
+
+<!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeNepu7626bMFY430pzB1UzcqhKeWUGFt8KnVySGUBDrDMJ-A/viewform?embedded=true" width="640" height="216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+{% block content %}
+<div class="container w-100v ht-100d">
+    <h1>{{title}}</h1>
+    <h6>{{doc}}</h6>
+    <div class="ht-100d">
+        {% if kind == "forms" or kind == "form" %}
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfHxDDALGU9hm-lRUzcjKlqaosP9QnUrLJv8xF99idpA5FoZg/viewform?embedded=true" width="640" height="822" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        {% else %} 
+        <iframe class="ht-100d w-100p" src="https://docs.google.com/{{kind}}/d/{{doc}}"></iframe>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

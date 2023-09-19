@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-12 text-center mb-5">
+        <div class="card mb-5 slide-right o-hidden ht-50d">
+            
+            <img src="{{url_for('static', filename='images/undraw/undraw_account.png')}}" class="card-img" />
+            <div class="card-img-overlay a-center">
+                <div class=" bg-success flex-center flex-column p-3 rounded-3 shadow slide-up-4">
+
+            <img src="{{user.thumbnailPhotoUrl}}"  class="rounded-circle" />
+                <p class="fs-2v">{{user.name.fullName}}</p>
+                <div class="w-100p space-between mb-4">
+                    <button class="btn btn-outline-warning">Incident Report</button>
+                    <button class="btn btn-warning">New Referral</button>
+                    <button class="btn btn-danger">eMail {{user.name.givenName}}</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="alert alert-light mb-5 slide-left" role="alert">
+        <div class="row">
+            <div class="flex-column col-3 mb-5">
+                <h6>First</h6>
+                <h4>{{user.name.givenName}}</h4>
+            </div>
+            <div class="flex-column col-3 mb-5">
+                <h6>Last</h6>
+                <h4>{{user.name.familyName}}</h4>
+            </div>
+            <div class="flex-column col-3 mb-5">
+                <h6>Email</h6>
+                <h4>{{user.primaryEmail}}</h4>
+            </div>
+            <div class="flex-column col-3 mb-5">
+                <h6>Extension</h6>
+                <h4>{% if not extension == None %}{{extension}}{% else %}0000{% endif %}</h4>
+            </div>
+            <div class="flex-column col-3 mb-5">
+                <h6>Admin</h6>
+                <h4>{{user.isAdmin}}</h4>
+            </div>
+            <div class="flex-column col-3 mb-5">
+                <h6>Suspended</h6>
+                <h4>{{user.suspended}}</h4>
+                {% if user.suspended %}
+                <p class="form-text text-danger">{{user.suspensionReason}}</p>
+                {% endif %}
+            </div>
+            {% if user.organizations %}
+            <div class="flex-column col-3 mb-5">
+                <h6>Department</h6>
+                <h4>{{user.organizations[0].department}}</h4>
+            </div>
+            
+            <div class="flex-column col-3 mb-5">
+                <h6>Title</h6>
+                <h4>{{user.organizations[0].title}}</h4>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="alert alert-light mb-5 slide-right" role="alert">
+        <div class="row">
+
+            <div class="col-3 mb-5 flex-column">
+                <h6>Is Admin</h6>
+                <h4>{{user.isAdmin}}</h4>
+            </div>
+            <div class="col-3 mb-5">
+                <h6>User Email</h6>
+                <h4>{{user.primaryEmail}}</h4>
+            </div>
+            <div class="col-3 mb-5">
+                <h6>User Id</h6>
+                <h4>{{user.id}}</h4>
+            </div>
+            <div class="col-3 mb-5">
+                <h6>User Org</h6>
+                <h4>{{user.orgUnitPath}}</h4>
+            </div>
+            <div class="col-3 mb-5">
+                <h6>Last login</h6>
+                <h4>{{user.lastLoginTime}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

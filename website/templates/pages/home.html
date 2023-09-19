@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block content %}
+<body onload="checker()">
+<div class="container ht-100d flex-center">
+	<div class="row m-auto">
+		<div class="container ht-full m-auto y-scroll flex-center">
+			<div class="row">
+				<div class="col-6 mb-5">
+					<div class="card ht-40d bg-main text-light">
+						<h2>Wolverine Weekly</h2>
+						<img src="{{url_for('static', filename='images/logos/logo_tree_green.jpg')}}" class="m-auto lighten shadow" />
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="card ht-40d bg-main text-light">
+						<h2>Quick Links</h2>
+						<ul class="list-group-flush">
+							<li class="list-group-item">Referral</li>
+							<li class="list-group-item">Incident</li>
+							<li class="list-group-item">Tech Support</li>
+							<li class="list-group-item">Extensions</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="card w-100 rounded-2 bg-main mb-5 o-hidden" style="height: 50dvh;">
+						<img src="{{url_for('static', filename='images/undraw/undraw_team.png')}}" class="card-img"
+							style="mix-blend-mode: multiply;" />
+						<div class="card-img-overlay">
+							<div class="card-body">
+								<h1>People Search</h1>
+								<div class="space-between w-100">
+									<div class="form-floating w-80p ht-30p text-dark">
+										<input type="text" class="form-control ht-100p mb-3 fs-2v" id="people_search"
+											name="people_search" oninput="filterUser()" />
+										<label for="people_search">Search for someone</label>
+									</div>
+									<div class="flex-column w-20p p-2">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="add students" id="student_toggle" onchange="checkedButton(this)">
+											<label class="form-check-label fs-1v" for="student_toggle">Include Students</label>
+										</div>
+									</div>
+								</div>
+								<div class="ht-50d o-hidden">
+									<p class="flex-center fs-3v fast-t" id="loader">Loading...</p>
+									<div class="row ht-80p o-scroll" id="user_list">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-5" style="min-height: 50dvh;">
+				<div class="col-md-6 col-xs-12">
+					{% for card in cards %}
+					{% if cards.index(card) is not even %}
+					<div class="col-md-12 col-sm-12 col-xs-12 slow-t" id="{{card.title}}_card_holder">
+						<div class="card relative mb-3 o-hidden fast-t" style="min-height: 30dvh;"
+							id="{{card.title}}_card">
+							<img src="static/images/undraw/undraw_{{card.title}}.png" class="card-img" />
+							<div class="card-img-overlay">
+								<div class="card-body space-between flex-column ht-100p">
+									<div class="card-header bg-{{card.color}} text-light w-50p rounded slide-up-{{cards.index(card)}} fast-t"
+										style="margin-top: 30%;" id="{{card.title}}_title">
+										<p class="fs-1">My {{card.title}}</p>
+										<hr />
+									</div>
+									<div class="o-scroll fast-t container" style="min-height:5%;opacity:0;"
+										id="{{card.title}}_children">
+										<div class="row" id="{{card.title}}_container">
+											
+										</div>
+									</div>
+									<div class="flex-center">
+										<button class="btn bg-{{card.color}} text-light"
+											onclick="showSection('{{card.title}}')" id="{{card.title}}_toggler">
+											{% if card.title == "drive" %}
+											Show my
+											{% else %}
+											See all
+											{% endif %}
+											{{card.title}}
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+
+					{% endfor %}
+				</div>
+				<div class="col-6">
+					{% for card in cards %}
+					{% if cards.index(card) is even %}
+					<div class="col-md-12 col-sm-12 col-xs-12 slow-t" id="{{card.title}}_card_holder">
+						<div class="card relative mb-3 o-hidden fast-t" style="min-height: 30dvh;"
+							id="{{card.title}}_card">
+							<img src="static/images/undraw/undraw_{{card.title}}.png" class="card-img" />
+							<div class="card-img-overlay">
+								<div class="card-body space-between flex-column ht-100p">
+									<div class="card-header bg-{{card.color}} text-light w-50p rounded slide-up-{{cards.index(card)}} fast-t"
+										style="margin-top: 30%;" id="{{card.title}}_title">
+										<p class="fs-1">My {{card.title}}</p>
+										<hr />
+									</div>
+									<div class="o-scroll fast-t container" style="min-height:5%;opacity:0;"
+										id="{{card.title}}_children">
+										<div class="row" id="{{card.title}}_container">
+											
+										</div>
+									</div>
+									<div class="flex-center">
+										<button class="btn bg-{{card.color}} text-light"
+											onclick="showSection('{{card.title}}')" id="{{card.title}}_toggler">
+											{% if card.title == "drive" %}
+											Show my
+											{% else %}
+											See all
+											{% endif %}
+											{{card.title}}
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<div class="card bg-primary ht-40d mb-5">
+				<img src="{{url_for('static', filename='images/undraw/undraw_it.png')}}" class="card-img lighten" />
+				<div class="row card-img-overlay text-primary">
+					<div class="col-12">I.T. Assistance</div>
+					<div class="col-6">
+						Six sided
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+{% endblock content %}

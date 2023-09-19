@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="/">Home</a>
+    <div class="card bg-main">
+            <div class="card-header">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="card-body flex-center flex-column w-100">
+                {% for q in form %}
+                    {% if q.__contains__("questionItem") %}
+                        <h6>{{q.questionItem.question.choiceItem}}</h6>
+                        {% if q.questionItem.question.__contains__("choiceQuestion") %}
+                            <div class="form-floating mb-3 w-50 slide-right-{{form.index(q)}}">
+                                <select class="form-control ht-10d form-select fs-3d text-main" aria-label="Options" name="{{q.itemId}}" id="{{q.itemId}}">
+                                    <option selected></option>
+                                    {% for val in q.questionItem.question.choiceQuestion.options %}
+                                        <option>{{val.value}}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="{{q.itemId}}" class=" fs-2d text-main">{{q.title}}</label>
+                            </div>
+                        {% elif q.questionItem.question.__contains__("textQuestion") and q.questionItem.question.textQuestion.__contains__("paragraph") and not q.title.__contains__("Phone") %}
+                            <div class="form-floating ht-20d mb-3 w-50 slide-right-{{form.index(q)}}">
+                                <textarea class="form-control ht-20d fs-3d p-3" id="{{q.itemId}}" name="{{q.itemId}}" rows="5" style="padding-top: 2dvh;line-height: 2.25;"></textarea>
+                                <label class="fs-2d text-main mb-3" for="{{q.itemId}}">{{q.title}}</label>
+                            </div>
+                        {% else %}
+                            <div class="form-floating mb-3 w-50 slide-left-{{form.index(q)}}">
+                                <input class="form-control ht-10d w-100 fs-3d" name="{{q.itemId}}" id="{{q.itemId}}" {% if
+                                    q.questionItem.question.textQuestion %} type="text" {% elif
+                                    q.questionItem.question.dateQuestion %} type="date" {% endif %} />
+                                <label for="{{q.itemId}}" class="fs-2d text-main mb-3">{{q.title}}</label>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <hr />
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

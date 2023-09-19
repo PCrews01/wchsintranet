@@ -1,0 +1,14 @@
+{%extends 'base.html' %}
+
+{% block content %}
+    <div class="container flex-center">
+        <div class="alert alert-danger w-70p p-3" role="alert">
+            <h5><sup>There's been an error!!!</sup></h5>
+            <h2 class="alert-title uppercase">RE: {{title.replace('-', ' ')}}</h2>
+            <hr />
+            <div class="card-body">
+                {{error}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body onload="clearCredentials()">
+<div class="container ht-100d relative flex-center">
+    <div class="alert alert-success relative" role="alert">
+        <img src="{{url_for('static', filename='images/undraw/undraw_login.png')}}" class="card-img w-100p rounded-2" />
+        <div class="card-img-overlay w-30p ht-100p p-4 text-light a-center">
+            <div class="card bg-success shadow flex-column j-center p-2">
+                <h4 class="alert-heading text-light">Logged out</h4>
+                <p>Sorry to see you go. You are logged out of the intranet</p>
+                <hr>
+                <a href="/">
+                    <button class="btn btn-outline-light">
+                        Return Home
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+{% endblock content %}
