@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Clever</h1>
+
+{% for person in id %}
+<li>{{person.name}} -- {{person.sis_user_id}}</li>
+<li>{{person.label}} -- {{person.html_url}}</li>
+{% endfor %}
+
+{% endblock content %}

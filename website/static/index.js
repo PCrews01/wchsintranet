@@ -422,3 +422,11 @@ function getList(named_item){
 function clearCredentials(){
   localStorage.clear()
 }
+
+function setPage(title){
+  console.log("Uhm")
+  let pill = document.querySelector("#home_pill")
+
+  pill.classList.add('bg-light','text-main', 'rounded-5')
+
+}

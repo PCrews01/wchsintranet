@@ -104,7 +104,7 @@ def alerter(id):
 			creds.refresh(Request())
 		else:
 			flow = InstalledAppFlow.from_client_secrets_file(
-					'wchsintranetv/cs.json', SCOPES)
+					'wchsintranetv/.cs.json', SCOPES)
 			flow.redirect_uri = "http://127.0.0.1:5000"
 			creds = flow.run_local_server(port=5000)
 			
@@ -147,7 +147,7 @@ def alerter(id):
 	
 	return flask.render_template("sections/selected_form.html", form=form_questions, id=id, title=title)
 
-@views.route("/")
+@views.route("/h")
 def splash():
 	
 	if 'credentials' not in flask.session:
@@ -184,7 +184,7 @@ def error(page,e):
 def authorize():
 
 	flow = InstalledAppFlow.from_client_secrets_file(
-		'wchsintranetv/cs.json', scopes=SCOPES
+		'wchsintranetv/.cs.json', scopes=SCOPES
 	)
 
 	flow.redirect_uri = flask.url_for('views.oauthcallback', _external=True)
@@ -204,7 +204,7 @@ def oauthcallback():
 	state = flask.session['state']
 
 	flow = InstalledAppFlow.from_client_secrets_file(
-		'wchsintranetv/cs.json',
+		'wchsintranetv/.cs.json',
 		scopes=SCOPES,
 		state=state
 	)	
@@ -352,6 +352,29 @@ def getAuth():
 	admin_list = discovery.build("admin", "directory_v1", credentials=credentials,cache_discovery=True)
 	
 	return credentials
+
+@views.route("/apps/clever")
+def cleverToken():
+
+	url = "https://wchs.instructure.com/api/v1/accounts/1/tabs"
+
+	headers = {
+		"accept": "application/json",
+		"Authorization": "Bearer 20701~Z1YOyellznoIN5fkeyqB7b8vLav65TWVXNn0R6Y2dBX0Fv1l3gEOzMQVqpORsI42"
+	}
+# d5d5927f-c6ff-33e3-8a30-bc5503511efd-U-1451
+	response = requests.get(url, headers=headers)
+	res_js = response.json()
+	print(res_js)
+	return flask.render_template("/pages/clever.html", id=res_js)
+
+@views.route("/dev/home")
+def devHome():
+
+	return flask.render_template("pages/.home.html")
+
+
+# FUNCTIONS
 
 def getForms():
 		credentials=getAuth()

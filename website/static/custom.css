@@ -440,7 +440,7 @@ li{
 	background-color: rgba(0, 120, 59, 0.9);
 }
 .bg-overlay-dark{
-	background-color: rgba(47, 79, 79, 0.35);
+	background-color: rgba(0, 120, 59, 0.75);
 }
 .bg-overlay-light{
 	background-color: rgba(255, 255, 255, 0.35);
@@ -1266,7 +1266,20 @@ li{
 .y-hidden{
 	overflow-y: hidden;
 }
-
+.clamp-1{
+	text-overflow: ellipsis;
+	line-clamp: 1;
+	-webkit-line-clamp: 1;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.clamp-2{
+	text-overflow: ellipsis;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	white-space: nowrap;
+	overflow: hidden;
+}
 .my-card-title{
 	font-size: 3vw;
 text-overflow: ellipsis;
@@ -1289,3 +1302,45 @@ overflow: hidden;
 .lighten{
 	mix-blend-mode: lighten;
 }
+.mb-multiply{
+	mix-blend-mode: multiply;
+}
+
+.op-center{
+	object-position: center;
+}
+.of-fill{
+	object-fit: fill;
+}
+.of-contain{
+	object-fit: contain;
+}
+
+.go-right{
+	right: 0;
+}
+.go-right-md{
+	right: -50px
+}
+.go-right-lg{
+	right: -150px
+}
+.p-bottom{
+	bottom: -50%;
+}
+.p-bottom-0{
+	bottom: -20%;
+}
+.tab-card-img{
+	padding: -25%;
+}
+
+.clipper{
+	font-size: 9.0em;
+	text-transform: uppercase;
+	font-family: 'Open Sans Pro', sans-serif;
+	background: url("/static/images/backgrounds/building.jpeg");
+	background-attachment: fixed;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	  }
