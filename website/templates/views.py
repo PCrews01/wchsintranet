@@ -8,8 +8,10 @@ from model import *
 from website import DB
 from base64 import b64encode
 import json
+# import jsonify
 import requests
 import os.path
+from sqlalchemy.exc import IntegrityError
 
 from apiclient import discovery
 from httplib2 import Http
@@ -49,8 +51,60 @@ my_docs = []
 my_sheets = []
 my_drive = []
 my_people = []
+employees_added = []
+students_added = []
 drive = None
 people = None
+extensions = [
+{"ext": "101","room":"621","name":"Alejandra----Aburdene","email":"aaburdene@thewcs.org","phone": "718-782-9830"},
+{"ext": "132","room":"321","name":"Kristen----Assenzio","email":"kassenzio@thewcs.org","phone": "718-782-9830"},
+{"ext": "102","room":"415","name":"Jahi----Bashir","email":"jbashir@thewcs.org","phone": "718-782-9830"},
+{"ext": "104","room":"M017","name":"Brooke----Bolnick","email":"bbolnick@thewcs.org","phone": "718-782-9830"},
+{"ext": "149","room":"611","name":"Matthew----Carenza","email":"mcarenza@thewcs.org","phone": "718-782-9830"},
+{"ext": "128","room":"411","name":"Lawrence----Combs","email":"lcombs@thewcs.org","phone": "718-782-9830"},
+{"ext": "105","room":"123","name":"Earline----Cooper","email":"ecooper@thewcs.org","phone": "718-782-9830"},
+{"ext": "140","room":"122","name":"Courtesy Phone","email":"718-782-9830"},
+{"ext": "126","room":"815","name":"Paul----Crews","email":"pcrews@thewcs.org","phone": "718-782-9830"},
+{"ext": "100","room":"Main Desk","name":"Ivette----Cruz","email":"icruz@thewcs.org","phone": "718-782-9830"},
+{"ext": "108","room":"M004","name":"Renee----De Lyon","email":"rdelyon@thewcs.org","phone": "718-782-9830"},
+{"ext": "111","room":"827","name":"Kathy----Fernandez","email":"kfernandez@thewcs.org","phone": "718-782-9830"},
+{"ext": "148","room":"822","name":"Arturo----Giscombe","email":"agiscombe@thewcs.org","phone": "718-782-9830"},
+{"ext": "129","room":"721","name":"Brittany----Gozikowski","email":"bgozikowski@thewcs.org","phone": "718-782-9830"},
+{"ext": "114","room":"717","name":"Rodney----Guzman Cruz","email":"rguzmancruz@thewcs.org","phone": "718-782-9830"},
+{"ext": "107","room":"8FL Desk","name":"Anesa----Hanif","email":"ahanif@thewcs.org","phone": "718-782-9830"},
+{"ext": "115","room":"209","name":"Angie----Helliger","email":"ahelliger@thewcs.org","phone": "718-782-9830"},
+{"ext": "150","room":"823","name":"Janelle----Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
+{"ext": "150","room":"823","name":"Janelle----Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
+{"ext": "117","room":"504","name":"Valerie----Jacobson","email":"vjacobson@thewcs.org","phone": "718-782-9830"},
+{"ext": "118","room":"820","name":"Raymond----James","email":"rjames@thewcs.org","phone": "718-782-9830"},
+{"ext": "119","room":"421","name":"Charisse----Johnson","email":"cjohnson@thewcs.org","phone": "718-782-9830"},
+{"ext": "120","room":"821","name":"Tamisha----Johnson","email":"tjohnson@thewcs.org","phone": "718-782-9830"},
+{"ext": "103","room":"M005","name":"Kelly----Leprohon","email":"kLeprohon@thewcs.org","phone": "718-782-9830"},
+{"ext": "134","room":"M008","name":"Abeje----Leslie-Smith","email":"aleslie@thewcs.org","phone": "718-782-9830"},
+{"ext": "141","room":"121","name":"Library","email":"718-782-9830"},
+{"ext": "122","room":"826","name":"Belnardina----Madera","email":"bmadera@thewcs.org","phone": "718-782-9830"},
+{"ext": "123","room":"Remote","name":"Katie----Manion","email":"kmanion@thewcs.org","phone": "718-782-9830"},
+{"ext": "125","room":"711","name":"Shante----Martin","email":"smartin@thewcs.org","phone": "718-782-9830"},
+{"ext": "127","room":"124","name":"Mariella----Medina","email":"mmedina@thewcs.org","phone": "718-782-9830"},
+{"ext": "143","room":"126","name":"Nurse","email":"718-782-9830"},
+{"ext": "243","room":"831","name":"Geraldine----Offei","email":"goffei@thewcs.org","phone": "718-782-9830"},
+{"ext": "106","room":"812","name":"Melody----Pink","email":"mpink@thewcs.org","phone": "718-782-9830"},
+{"ext": "131","room":"717","name":"Tiffany----Pratt","email":"tpratt@thewcs.org","phone": "718-782-9830"},
+{"ext": "132","room":"7th Fl","name":"Natasha----Robinson","email":"nrobinson@thewcs.org","phone": "718-782-9830"},
+{"ext": "142","room":"Lobby","name":"Safety Desk","email":"718-782-9830"},
+{"ext": "151","room":"M003","name":"Samantha----Sales","email":"ssales@thewcs.org","phone": "718-782-9830"},
+{"ext": "144","room":"102B","name":"School Foods","email":"718-782-9830"},
+{"ext": "133","room":"M006","name":"Chered----Spann","email":"cspann@thewcs.org","phone": "718-782-9830"},
+{"ext": "113","room":"531","name":"Elodie----St. Fleur","email":"estfleur@thewcs.org","phone": "718-782-9830"},
+{"ext": "145","room":"214","name":"Teacher's Lounge 1","email":"718-782-9830"},
+{"ext": "146","room":"214","name":"Teacher's Lounge 2","email":"718-782-9830"},
+{"ext": "147","room":"214","name":"Teacher's Lounge 3","email":"718-782-9830"},
+{"ext": "112","room":"822","name":"Justin----Usher","email":"jusher@thewcs.org","phone": "718-782-9830"},
+{"ext": "136","room":"122","name":"Allison----Witkowski","email":"awitkowski@thewcs.org","phone": "718-782-9830"},
+{"ext": "137","room":"505","name":"Rosa----Yenque","email":"ryenque@thewcs.org","phone": "718-782-9830"},
+{"ext": "138","room":"127","name":"Silvia----Yenque","email":"syenque@thewcs.org","phone": "718-782-983"},
+
+]
 
 @views.route("/get-users")
 def grabUsers():
@@ -223,7 +277,7 @@ def oauthcallback():
 @views.route('/revoke')
 def revoke():
 	if 'credentials' not in flask.session:
-		return ('You need to <a href="/authorize">authorize </a> brfore accessing this page.')
+		return ('You need to <a href="/authorize">authorize </a> before accessing this page.')
 	
 	credentials = Credentials(
 		**flask.session['credentials']
@@ -252,6 +306,35 @@ def logout():
 
 	return flask.render_template("pages/auth/logout.html")
 
+@views.route("/auth/leave")
+def signOut():
+	if 'credentials' in flask.session:
+		del flask.session['credentials']
+
+	if 'credentials' not in flask.session:
+		return ('You need to <a href="/authorize">authorize </a> before accessing this page.')
+	
+	credentials = Credentials(
+		**flask.session['credentials']
+	)
+
+	revoke = requests.post(
+		'http://oauth2.googleapis.com/revoke', 
+		params={'token':credentials.token},
+		headers = {'content-type': 'application/x-www-form-urlencoded'}
+		       )
+	status_code = getattr(revoke, 'status_code')
+
+	if status_code == 200:
+		return ('Credentials successfully revoked.' )
+	else:
+		return('An error has occurred.' + printindexTable())
+	
+
+
+
+
+
 @views.route('/home')
 def home():
 	
@@ -264,7 +347,6 @@ def user(id):
 	
 	range_names = "A2:C"
 	
-
 	admin_list = discovery.build("admin", "directory_v1", credentials=credentials,cache_discovery=True)
 	person_page_token = None
 	selected_user = None
@@ -323,7 +405,39 @@ def getNextPage(next_page_token):
 			for user in users:
 				if not my_people.__contains__(user):
 					my_people.append(user)
-			
+					
+			for person in my_people:
+
+				user_to_add = GWUser()
+				sem = person.get('name')
+				fem = person.get("primaryEmail")
+				if not any(map(str.isdigit, person.get("primaryEmail"))):
+					user_to_add.extension = getExtension(fem)
+				user_to_add.first_name = sem.get("givenName")
+				user_to_add.last_name = sem.get("familyName")
+				user_to_add.email = fem
+				user_to_add.id = person.get("id")
+				user_to_add.is_delegate_admin = person.get("isDelegateAdmin")
+				user_to_add.is_admin = person.get("isAdmin")
+				user_to_add.is_mailbox_setup = person.get("isMailboxSetup")
+				user_to_add.is_suspended = person.get("isSuspended")
+				user_to_add.kind = person.get("kind")
+				user_to_add.org_unit_path = person.get("orgUnitPath")
+				if  len(str(person.get("thumbnailPhotoUrl"))) > 4:
+					user_to_add.thumbnail_url = person.get("thumbnailPhotoUrl")
+				else:
+					user_to_add.thumbnail_url = flask.url_for("static", filename="images/logos/logo_tree_green.jpg")
+
+				if any(map(str.isdigit, person.get("primaryEmail"))):
+					user_to_add.is_student = True
+				else:
+					user_to_add.is_student = False
+
+				if GWUser.query.filter(GWUser.id == person.get("id")).first() == None:
+					DB.session.add(user_to_add)
+					DB.session.commit()
+					employees_added.append(person.get("id"))
+
 			people_page_token = admin_results.get("nextPageToken")
 
 			if not people_page_token:
@@ -373,7 +487,46 @@ def devHome():
 
 	return flask.render_template("pages/.home.html")
 
+@views.route("dev/staff")
+def staff():
+	wchs_people = len(GWUser.query.all())
+	wchs_staff = GWUser.query.filter(GWUser.is_student == 0).all()
+	wchs_students = GWUser.query.filter(GWUser.is_student == 1).all()
+	print(f"Count {wchs_people}")
+	if wchs_people < 1:
+		try:
+			if 'credentials' not in flask.session:
+				return ('You need to <a href="/authorize">authorize </a> before accessing this page.')
+			getUserList()
+		except  HttpError:
+			print(f"Error getting people: {HttpError._get_reason}")
 
+	return flask.render_template("pages/staff/wchs_staff_list.html", wchs_staff=wchs_staff, wchs_students=wchs_students)
+
+@views.route("/u/<email>")
+def contactDetails(email):
+	try:
+		contact = GWUser.query.filter(GWUser.email == email).first()
+		json_contact = {
+			"id": contact.id,
+            "email": contact.email,
+            "is_admin": contact.is_admin,
+            "is_delegate_admin":contact.is_delegate_admin,
+    		"is_mailbox_setup": contact.is_mailbox_setup,
+    		"kind": contact.kind,
+    		"language": contact.language,
+    		"first_name": contact.first_name,
+    		"last_name": contact.last_name,
+    		"org_unit_path": contact.org_unit_path,
+    		"organizations": contact.organizations,
+    		"thumbnail_url": contact.thumbnail_url,
+    		"is_student": contact.is_student,
+			"extension": contact.extension
+        }
+		return json_contact
+	except HttpError:
+		print(f"ERROR finding user: {HttpError._get_reason()}")
+		return(f"Error finding user {email}")
 # FUNCTIONS
 
 def getForms():
@@ -434,9 +587,49 @@ def getUserList():
 			users = admin_results.get('users', [])
 			
 			for user in users:
+# CREATE A NEW USER OBJECT
+				user_to_add = GWUser()
+# CHECL TO SEE IF THE USER WAS ADDED TO MY_PEOPLE
 				if not my_people.__contains__(user):
 					my_people.append(user)
-			
+
+# ITERATE THE MY_PEOPLE LIST 
+			for person in my_people:
+				sem = person.get('name')
+				fem = person.get("primaryEmail")
+				if not any(map(str.isdigit, fem)):
+					user_to_add.extension = getExtension(person.get('email'))
+				user_to_add.first_name = sem.get("givenName")
+				user_to_add.last_name = sem.get("familyName")
+				user_to_add.email = fem
+				user_to_add.id = person.get("id")
+				user_to_add.is_delegate_admin = person.get("isDelegateAdmin")
+				user_to_add.is_admin = person.get("isAdmin")
+				user_to_add.is_mailbox_setup = person.get("isMailboxSetup")
+				user_to_add.is_suspended = person.get("isSuspended")
+				user_to_add.kind = person.get("kind")
+				user_to_add.org_unit_path = person.get("orgUnitPath")
+				if  len(str(person.get("thumbnailPhotoUrl"))) > 4:
+					user_to_add.thumbnail_url = person.get("thumbnailPhotoUrl")
+				else:
+					user_to_add.thumbnail_url = flask.url_for("static", filename="images/logos/logo_tree_green.jpg")
+
+				if any(map(str.isdigit, person.get("primaryEmail"))):
+					user_to_add.is_student = True
+				else:
+					user_to_add.is_student = False
+
+				if GWUser.query.filter(GWUser.id == person.get("id")).first() == None:
+					try:
+						DB.session.add(user_to_add)
+						DB.session.commit()
+						employees_added.append(person.get("primaryEmail"))
+						print(f"Added {user_to_add.email}")
+					except IntegrityError:
+						print(f"Failed to add staff member {user_to_add.email} to DB")
+						DB.session.rollback()
+						continue
+
 			people_page_token = admin_results.get("nextPageToken")
 		
 			if not people_page_token:
@@ -451,3 +644,11 @@ def returnHome():
 	print("Yute")
 	getUserList()
 	return "Yute"
+
+def getExtension(email):
+	for ext in extensions:
+		# print(f" EXTxx {ext.get('ext')} -- {email}")
+		if ext.get("email") == email:
+			print(f"I'm in here {ext['ext']}")
+			return ext['ext']
+	return "00"

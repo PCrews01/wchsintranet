@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body class="container m-auto ht-100d oy-scroll">
+    <div class="row ht-30p mb-3 slow-t" id="person_query">
+        <div class="col-12">
+            <div class="card card-body bg-light rounded-3 ht-100p w-100p o-hidden">
+                <img id="contact_splash_image" src="{{url_for('static', filename='images/undraw/undraw_contact.png')}}"
+                    class="card-img mb-multiply absolute go-right-md w-50p" />
+                <div class="card-img-overlay ht-30d flex-column space-between">
+                    <h3 class="bg-overlay-dark w-100p p-2 rounded-bottom-2" style="margin: -20px 0 0 -20px;">
+                        WCHS Contact List</h3>
+                    <div class="row w-100p ht-50p mb-3 a-center">
+                        <div class="bg-main col-4 rounded-2 ht-10d flex-center">
+                            <div class="form-floating w-100p">
+                                <input type="text" list="person_list" id="wchs_search" name="wchs_search"
+                                    class="form-control w-100p" onchange="showUserDetails(this)" />
+                                <datalist id="person_list">
+                                    {% for user in wchs_staff %}
+                                    <option value="{{user.first_name}} {{user.last_name}} - {{user.email}}"></option>
+                                    {% endfor %}
+                                </datalist>
+                                <label for="wchs_search">
+                                    Find someone
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-8" id="selected_person">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ht-70p" id="users_lists">
+        <div class="col-6 ht-100p">
+            <div class="card w-100 rounded-2 bg-main mb-5 o-hidden">
+                <img src="{{url_for('static', filename='images/undraw/undraw_team.png')}}" class="card-img"
+                    style="mix-blend-mode: multiply;" />
+                <div class="card-img-overlay">
+                    <div class="card-body">
+                        <h1 class="text-light">WCHS Students</h1>
+                        <div class="ht-50d o-hidden">
+                            <div class="w-100 row ht-100p o-scroll" id="user_list">
+                                {% if wchs_students %}
+                                {% for employee in wchs_students %}
+                                <div class="col-4 mb-3">
+                                    <div class="card card-body bg-light rounded-3 ht-20d w-100p o-hidden mb-3">
+                                        <img src="{{employee.thumbnail_url}}"
+                                            class="card-img ht-100p w-auto mb-multiply" />
+                                        <div class="card-img-overlay">
+                                            <h6 class="bg-main text-light w-100p p-2 rounded-bottom-2"
+                                                style="margin: -20px 0 0 -20px;">
+                                                {{employee.first_name}} {{employee.last_name}}
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p class="flex-center fs-3v fast-t" id="loader">Loading...</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 ht-100p">
+            <div class="card w-100 rounded-2 bg-main mb-5 o-hidden">
+                <img src="{{url_for('static', filename='images/undraw/undraw_team.png')}}" class="card-img"
+                    style="mix-blend-mode: multiply;" />
+                <div class="card-img-overlay">
+                    <div class="card-body">
+                        <h1 class="text-light">WCHS Employee</h1>
+                        <div class="ht-50d o-hidden">
+                            <div class="w-100 row ht-100p o-scroll" id="user_list">
+                                {% if wchs_staff %}
+                                {% for employee in wchs_staff %}
+                                <div class="col-4 mb-3">
+                                    <div class="card card-body bg-light rounded-3 ht-20d w-100p o-hidden m-auto">
+                                        <img src="{{employee.thumbnail_url}}"
+                                            class="card-img ht-100p w-auto mb-multiply" />
+                                        <div class="card-img-overlay">
+                                            <h6 class="bg-main text-light w-100p p-2 rounded-bottom-2"
+                                                style="margin: -20px 0 0 -20px;">
+                                                {{employee.first_name}} {{employee.last_name}}
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p class="flex-center fs-3v fast-t" id="loader">Loading...</p>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}

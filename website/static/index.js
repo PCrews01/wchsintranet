@@ -11,27 +11,6 @@ function alerters(id) {
   console.log(" YO");
 };
 function showSection(section) {
-  // let my_section = document.querySelector(`#${section}-container`)
-  // let my_card = document.querySelector(`#${section}-card`)
-  // let my_img = document.querySelector(`#${section}-image`)
-  // let my_btn = document.querySelector(`#${section}-btn`)
-  // let my_close = document.querySelector(`#${section}-close`)
-  // let my_toggler = document.querySelector(`#${section}-toggler`)
-  // let blur_count = 0
-
-  // my_section.classList.toggle("hidden")
-  // my_section.classList.toggle("ht-0")
-  // my_section.classList.toggle("a-ht-90")
-  // my_card.classList.toggle("col-6")
-  // my_card.classList.toggle("col-12")
-  // my_img.classList.toggle('blur-10')
-  // my_btn.classList.toggle("a-fade-in")
-  // my_btn.classList.toggle("hidden")
-  // my_toggler.classList.toggle("a-fade-in")
-  // my_toggler.classList.toggle("hidden")
-  // my_close.classList.toggle("a-fade-out")
-  // my_close.classList.toggle("a-fade-in")
-
   let section_card = document.querySelector(`#${section}_card`);
   let section_title = document.querySelector(`#${section}_title`);
   let section_children = document.querySelector(`#${section}_children`);
@@ -40,8 +19,6 @@ function showSection(section) {
   section_card.scrollIntoView();
 
   if (section_title.style.marginTop == `${30}%`) {
-    // section_title.style.width = `${100}%`
-
     section_title.style.marginTop = `${0}%`;
     section_title.style.width = `${100}%`;
 
@@ -424,9 +401,201 @@ function clearCredentials(){
 }
 
 function setPage(title){
-  console.log("Uhm")
   let pill = document.querySelector("#home_pill")
 
   pill.classList.add('bg-light','text-main', 'rounded-5')
 
+}
+
+function getStaff(){
+  let user_list = document.querySelector("#user_list").children
+  if(user_list.length < 1){
+    $.getJSON("/get-users").then((c) => {
+      console.log("This is c", c)
+    })
+    .finally(() => {
+      setPage("staff")
+    })
+  }
+}
+// pass the person and the page target - should be the element id
+function createUserCard(person, target){
+  
+  let card_wrapper = document.createElement("div")
+
+  let card_header = document.createElement("div")
+  card_header.classList.add("card-header")
+  card_header.textContent = `${person.first_name} ${person.last_name}`
+
+  let card_body = document.createElement("div")
+  card_body.className = "card-body ht-100p"
+
+  let card_row = document.createElement("div")
+  card_row.className = "row ht-90p"
+
+  let card_image = document.createElement("img")
+  card_image.classList = "ht-20d rounded-2 m-auto w-90p"
+  card_image.setAttribute("src", person.thumbnail_url)
+
+  let card_list = document.createElement("div")
+  card_list.classList.add("row")
+    
+  let card_col_1 = document.createElement("div")
+  card_col_1.classList.add("col-4")
+  card_col_1.appendChild(card_image)
+
+  let card_col_2 = document.createElement("div")
+  card_col_2.className = "col-8 y-scroll ht-90p"
+  card_col_2.appendChild(card_list)
+
+
+  let card_list_row = document.createElement("div")
+  card_list_row.classList.add("row")
+  
+  let target_element = document.querySelector(`#${target}`)
+
+  // add classes to the elements
+  card_wrapper.classList.add("card","bg-light","rounded-3","ht-30d","w-80p","o-hidden","m-auto","slide-up","slow-t","ar-16")
+  
+  // add attributes to elements
+  // card_overlay.setAttribute("style", "margin: -20px 0 0 -20px;")
+
+  // add text to elements
+
+  // build the card
+
+  for (const key in person){
+    let label = document.createElement("small")
+    label.setAttribute("style", "font-weight:bold;")
+    label.textContent = `${key}:`
+
+    let val = document.createElement("div")
+    val.textContent = person[key]
+    
+    let new_li = document.createElement("div")
+    new_li.className = "col-6 mb-3"
+    new_li.appendChild(label)
+    new_li.appendChild(val)
+
+    card_list.appendChild(new_li)
+    
+  }
+  card_wrapper.appendChild(card_header)
+
+  card_col_1.appendChild(card_image)
+
+  card_row.appendChild(card_col_1)
+  card_row.appendChild(card_col_2)
+
+  card_body.appendChild(card_row)
+  
+  card_wrapper.appendChild(card_body)
+
+  // 
+  target_element.appendChild(card_wrapper)
+}
+
+/* 
+
+<div class="card text-center">
+  <div class="card-header">
+    Name
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-4">
+          <img src="/static/images/logos/logo_tree_green.jpg" class="w-100" />
+      </div>
+      <div class="col-8">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  <div class="row">
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="first"><b>First:</b></label>
+                          <span>First</span>
+                          </span>
+                      </div>
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="last"><b>Last:</b></label>
+                          <span id="last">Last</span>
+                          </span>
+                      </div>
+                  </div>
+              </li><li class="list-group-item">
+                  <div class="row">
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="first"><b>First:</b></label>
+                          <span>First</span>
+                          </span>
+                      </div>
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="last"><b>Last:</b></label>
+                          <span id="last">Last</span>
+                          </span>
+                      </div>
+                  </div>
+              </li><li class="list-group-item">
+                  <div class="row">
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="first"><b>First:</b></label>
+                          <span>First</span>
+                          </span>
+                      </div>
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="last"><b>Last:</b></label>
+                          <span id="last">Last</span>
+                          </span>
+                      </div>
+                  </div>
+              </li><li class="list-group-item">
+                  <div class="row">
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="first"><b>First:</b></label>
+                          <span>First</span>
+                          </span>
+                      </div>
+                      <div class="col-6">
+                          <span class="space-between">
+                          <label for="last"><b>Last:</b></label>
+                          <span id="last">Last</span>
+                          </span>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
+    </div>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class="card-footer text-body-secondary">
+    2 days ago
+  </div>
+</div>
+*/
+function showUserDetails(id){
+  let param = id.value.split(" - ")[1]
+  let contact_splash_image = document.querySelector("#contact_splash_image")
+  console.log("Param ", param)
+  $.getJSON(`/u/${param}`).then((user) => {
+    let person_query = document.querySelector("#person_query")
+    let users_list = document.querySelector("#users_lists")
+
+    console.log("user is ", user)
+    person_query.classList.toggle("ht-30d")
+    person_query.classList.toggle("ht-50d")
+    
+    users_list.classList.toggle("ht-50d")
+    users_list.classList.toggle("ht-70d")
+
+    // contact_splash_image.setAttribute("src", user.thumbnail_url)
+    createUserCard(user, "selected_person")
+  })
 }
