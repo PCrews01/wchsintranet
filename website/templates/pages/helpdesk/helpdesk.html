@@ -2,5 +2,47 @@
 
 {% block content %}
 
+<body class="y-scroll ht-100d">
+    <div class="row ht-30p mb-3 slow-t" id="">
+        <div class="col-12">
+            <div class="card card-body bg-light rounded-3 ht-100p w-100p o-hidden">
+                <img id="contact_splash_image" src="{{url_for('static', filename='images/undraw/undraw_helpdesk.png')}}"
+                    class="card-img mb-multiply absolute go-right-md w-50p" />
+                <div class="card-img-overlay ht-30d flex-column space-between">
+                    <h3 class="bg-overlay-dark w-100p p-2 rounded-bottom-2" style="margin: -20px 0 0 -20px;">
+                        WCHS Support</h3>
+                    <div class="row w-100p ht-50p mb-3 a-center">
+                        <div class="bg-main col-4 rounded-2 ht-10d flex-center">
+                            <div class="form-floating w-100p">
+                                <input type="text" list="person_list" id="wchs_search" name="wchs_search"
+                                    class="form-control w-100p" onchange="" />
+                                <label for="wchs_search">
+                                    Support
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-8" id="selected_person">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ht-30d mb-3 slow-t">
+        {% for article in kb %}
+                <div class="card card-body bg-light rounded-3 ht-100p w-100p o-hidden mb-3" id="{{article.get('KBID')}}">
+                    <img src="{{url_for('static', filename='images/undraw/undraw_helpdesk.png')}}"
+                        class="card-img ht-100p w-auto mb-multiply absolute go-right-md" />
+                    <div class="card-img-overlay space-between ht-100p flex-column">
+                        <h3 class="bg-overlay-dark w-100p p-2 rounded-bottom-2 ht-20p" style="margin: -20px 0 0 -20px;">
+                           Article # {{article.get("KBID")}}: {{article.get("KBProduct")}}</h3>
 
+                           <div class="w-70p ht-80p bg-main rounded-2 y-scroll p-3" id="ticket_{{article.get('{{KBID}}')}}">
+                            {{article.get('KBContext')}}
+                           </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</body>
 {% endblock %}

@@ -495,91 +495,6 @@ function createUserCard(person, target){
   target_element.appendChild(card_wrapper)
 }
 
-/* 
-
-<div class="card text-center">
-  <div class="card-header">
-    Name
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-4">
-          <img src="/static/images/logos/logo_tree_green.jpg" class="w-100" />
-      </div>
-      <div class="col-8">
-          <ul class="list-group">
-              <li class="list-group-item">
-                  <div class="row">
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="first"><b>First:</b></label>
-                          <span>First</span>
-                          </span>
-                      </div>
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="last"><b>Last:</b></label>
-                          <span id="last">Last</span>
-                          </span>
-                      </div>
-                  </div>
-              </li><li class="list-group-item">
-                  <div class="row">
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="first"><b>First:</b></label>
-                          <span>First</span>
-                          </span>
-                      </div>
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="last"><b>Last:</b></label>
-                          <span id="last">Last</span>
-                          </span>
-                      </div>
-                  </div>
-              </li><li class="list-group-item">
-                  <div class="row">
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="first"><b>First:</b></label>
-                          <span>First</span>
-                          </span>
-                      </div>
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="last"><b>Last:</b></label>
-                          <span id="last">Last</span>
-                          </span>
-                      </div>
-                  </div>
-              </li><li class="list-group-item">
-                  <div class="row">
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="first"><b>First:</b></label>
-                          <span>First</span>
-                          </span>
-                      </div>
-                      <div class="col-6">
-                          <span class="space-between">
-                          <label for="last"><b>Last:</b></label>
-                          <span id="last">Last</span>
-                          </span>
-                      </div>
-                  </div>
-              </li>
-          </ul>
-      </div>
-    </div>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-body-secondary">
-    2 days ago
-  </div>
-</div>
-*/
 function showUserDetails(id){
   let param = id.value.split(" - ")[1]
   let contact_splash_image = document.querySelector("#contact_splash_image")
@@ -599,3 +514,19 @@ function showUserDetails(id){
     createUserCard(user, "selected_person")
   })
 }
+function getCrazy(html_output, id){
+  let parser = new DOMParser()
+  let html = parser.parseFromString(parser, 'text/html')
+}
+// function getKB(){
+//   console.log("This is KB running")
+//   fetch("https://app.atera.com/api/v3/knowledgebases", {
+//     'headers':{
+//       'Content-Type': 'application/json',
+//       "X-API-KEY": "Bearer 7c215afdf2a346df8469ba88dc909771",
+//       "Access-Control-Allow-Origin": "*"
+//     }
+//   }).then((kb) => {
+//     console.log("This is KB: ", kb.json())
+//   })
+// }

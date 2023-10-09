@@ -56,53 +56,53 @@ students_added = []
 drive = None
 people = None
 extensions = [
-{"ext": "101","room":"621","name":"Alejandra----Aburdene","email":"aaburdene@thewcs.org","phone": "718-782-9830"},
-{"ext": "132","room":"321","name":"Kristen----Assenzio","email":"kassenzio@thewcs.org","phone": "718-782-9830"},
-{"ext": "102","room":"415","name":"Jahi----Bashir","email":"jbashir@thewcs.org","phone": "718-782-9830"},
-{"ext": "104","room":"M017","name":"Brooke----Bolnick","email":"bbolnick@thewcs.org","phone": "718-782-9830"},
-{"ext": "149","room":"611","name":"Matthew----Carenza","email":"mcarenza@thewcs.org","phone": "718-782-9830"},
-{"ext": "128","room":"411","name":"Lawrence----Combs","email":"lcombs@thewcs.org","phone": "718-782-9830"},
-{"ext": "105","room":"123","name":"Earline----Cooper","email":"ecooper@thewcs.org","phone": "718-782-9830"},
+{"ext": "101","room":"621","name":"Alejandra Aburdene","email":"aaburdene@thewcs.org","phone": "718-782-9830"},
+{"ext": "132","room":"321","name":"Kristen Assenzio","email":"kassenzio@thewcs.org","phone": "718-782-9830"},
+{"ext": "102","room":"415","name":"Jahi Bashir","email":"jbashir@thewcs.org","phone": "718-782-9830"},
+{"ext": "104","room":"M017","name":"Brooke Bolnick","email":"bbolnick@thewcs.org","phone": "718-782-9830"},
+{"ext": "149","room":"611","name":"Matthew Carenza","email":"mcarenza@thewcs.org","phone": "718-782-9830"},
+{"ext": "128","room":"411","name":"Lawrence Combs","email":"lcombs@thewcs.org","phone": "718-782-9830"},
+{"ext": "105","room":"123","name":"Earline Cooper","email":"ecooper@thewcs.org","phone": "718-782-9830"},
 {"ext": "140","room":"122","name":"Courtesy Phone","email":"718-782-9830"},
-{"ext": "126","room":"815","name":"Paul----Crews","email":"pcrews@thewcs.org","phone": "718-782-9830"},
-{"ext": "100","room":"Main Desk","name":"Ivette----Cruz","email":"icruz@thewcs.org","phone": "718-782-9830"},
-{"ext": "108","room":"M004","name":"Renee----De Lyon","email":"rdelyon@thewcs.org","phone": "718-782-9830"},
-{"ext": "111","room":"827","name":"Kathy----Fernandez","email":"kfernandez@thewcs.org","phone": "718-782-9830"},
-{"ext": "148","room":"822","name":"Arturo----Giscombe","email":"agiscombe@thewcs.org","phone": "718-782-9830"},
-{"ext": "129","room":"721","name":"Brittany----Gozikowski","email":"bgozikowski@thewcs.org","phone": "718-782-9830"},
-{"ext": "114","room":"717","name":"Rodney----Guzman Cruz","email":"rguzmancruz@thewcs.org","phone": "718-782-9830"},
-{"ext": "107","room":"8FL Desk","name":"Anesa----Hanif","email":"ahanif@thewcs.org","phone": "718-782-9830"},
-{"ext": "115","room":"209","name":"Angie----Helliger","email":"ahelliger@thewcs.org","phone": "718-782-9830"},
-{"ext": "150","room":"823","name":"Janelle----Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
-{"ext": "150","room":"823","name":"Janelle----Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
-{"ext": "117","room":"504","name":"Valerie----Jacobson","email":"vjacobson@thewcs.org","phone": "718-782-9830"},
-{"ext": "118","room":"820","name":"Raymond----James","email":"rjames@thewcs.org","phone": "718-782-9830"},
-{"ext": "119","room":"421","name":"Charisse----Johnson","email":"cjohnson@thewcs.org","phone": "718-782-9830"},
-{"ext": "120","room":"821","name":"Tamisha----Johnson","email":"tjohnson@thewcs.org","phone": "718-782-9830"},
-{"ext": "103","room":"M005","name":"Kelly----Leprohon","email":"kLeprohon@thewcs.org","phone": "718-782-9830"},
-{"ext": "134","room":"M008","name":"Abeje----Leslie-Smith","email":"aleslie@thewcs.org","phone": "718-782-9830"},
+{"ext": "126","room":"815","name":"Paul Crews","email":"pcrews@thewcs.org","phone": "718-782-9830"},
+{"ext": "100","room":"Main Desk","name":"Ivette Cruz","email":"icruz@thewcs.org","phone": "718-782-9830"},
+{"ext": "108","room":"M004","name":"Renee De Lyon","email":"rdelyon@thewcs.org","phone": "718-782-9830"},
+{"ext": "111","room":"827","name":"Kathy Fernandez","email":"kfernandez@thewcs.org","phone": "718-782-9830"},
+{"ext": "148","room":"822","name":"Arturo Giscombe","email":"agiscombe@thewcs.org","phone": "718-782-9830"},
+{"ext": "129","room":"721","name":"Brittany Gozikowski","email":"bgozikowski@thewcs.org","phone": "718-782-9830"},
+{"ext": "114","room":"717","name":"Rodney Guzman Cruz","email":"rguzmancruz@thewcs.org","phone": "718-782-9830"},
+{"ext": "107","room":"8FL Desk","name":"Anesa Hanif","email":"ahanif@thewcs.org","phone": "718-782-9830"},
+{"ext": "115","room":"209","name":"Angie Helliger","email":"ahelliger@thewcs.org","phone": "718-782-9830"},
+{"ext": "150","room":"823","name":"Janelle Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
+{"ext": "150","room":"823","name":"Janelle Holford","email":"jholford@thewcs.org","phone": "718-782-9830"},
+{"ext": "117","room":"504","name":"Valerie Jacobson","email":"vjacobson@thewcs.org","phone": "718-782-9830"},
+{"ext": "118","room":"820","name":"Raymond James","email":"rjames@thewcs.org","phone": "718-782-9830"},
+{"ext": "119","room":"421","name":"Charisse Johnson","email":"cjohnson@thewcs.org","phone": "718-782-9830"},
+{"ext": "120","room":"821","name":"Tamisha Johnson","email":"tjohnson@thewcs.org","phone": "718-782-9830"},
+{"ext": "103","room":"M005","name":"Kelly Leprohon","email":"kLeprohon@thewcs.org","phone": "718-782-9830"},
+{"ext": "134","room":"M008","name":"Abeje Leslie-Smith","email":"aleslie@thewcs.org","phone": "718-782-9830"},
 {"ext": "141","room":"121","name":"Library","email":"718-782-9830"},
-{"ext": "122","room":"826","name":"Belnardina----Madera","email":"bmadera@thewcs.org","phone": "718-782-9830"},
-{"ext": "123","room":"Remote","name":"Katie----Manion","email":"kmanion@thewcs.org","phone": "718-782-9830"},
-{"ext": "125","room":"711","name":"Shante----Martin","email":"smartin@thewcs.org","phone": "718-782-9830"},
-{"ext": "127","room":"124","name":"Mariella----Medina","email":"mmedina@thewcs.org","phone": "718-782-9830"},
+{"ext": "122","room":"826","name":"Belnardina Madera","email":"bmadera@thewcs.org","phone": "718-782-9830"},
+{"ext": "123","room":"Remote","name":"Katie Manion","email":"kmanion@thewcs.org","phone": "718-782-9830"},
+{"ext": "125","room":"711","name":"Shante Martin","email":"smartin@thewcs.org","phone": "718-782-9830"},
+{"ext": "127","room":"124","name":"Mariella Medina","email":"mmedina@thewcs.org","phone": "718-782-9830"},
 {"ext": "143","room":"126","name":"Nurse","email":"718-782-9830"},
-{"ext": "243","room":"831","name":"Geraldine----Offei","email":"goffei@thewcs.org","phone": "718-782-9830"},
-{"ext": "106","room":"812","name":"Melody----Pink","email":"mpink@thewcs.org","phone": "718-782-9830"},
-{"ext": "131","room":"717","name":"Tiffany----Pratt","email":"tpratt@thewcs.org","phone": "718-782-9830"},
-{"ext": "132","room":"7th Fl","name":"Natasha----Robinson","email":"nrobinson@thewcs.org","phone": "718-782-9830"},
+{"ext": "243","room":"831","name":"Geraldine Offei","email":"goffei@thewcs.org","phone": "718-782-9830"},
+{"ext": "106","room":"812","name":"Melody Pink","email":"mpink@thewcs.org","phone": "718-782-9830"},
+{"ext": "131","room":"717","name":"Tiffany Pratt","email":"tpratt@thewcs.org","phone": "718-782-9830"},
+{"ext": "132","room":"7th Fl","name":"Natasha Robinson","email":"nrobinson@thewcs.org","phone": "718-782-9830"},
 {"ext": "142","room":"Lobby","name":"Safety Desk","email":"718-782-9830"},
-{"ext": "151","room":"M003","name":"Samantha----Sales","email":"ssales@thewcs.org","phone": "718-782-9830"},
+{"ext": "151","room":"M003","name":"Samantha Sales","email":"ssales@thewcs.org","phone": "718-782-9830"},
 {"ext": "144","room":"102B","name":"School Foods","email":"718-782-9830"},
-{"ext": "133","room":"M006","name":"Chered----Spann","email":"cspann@thewcs.org","phone": "718-782-9830"},
-{"ext": "113","room":"531","name":"Elodie----St. Fleur","email":"estfleur@thewcs.org","phone": "718-782-9830"},
+{"ext": "133","room":"M006","name":"Chered Spann","email":"cspann@thewcs.org","phone": "718-782-9830"},
+{"ext": "113","room":"531","name":"Elodie St. Fleur","email":"estfleur@thewcs.org","phone": "718-782-9830"},
 {"ext": "145","room":"214","name":"Teacher's Lounge 1","email":"718-782-9830"},
 {"ext": "146","room":"214","name":"Teacher's Lounge 2","email":"718-782-9830"},
 {"ext": "147","room":"214","name":"Teacher's Lounge 3","email":"718-782-9830"},
-{"ext": "112","room":"822","name":"Justin----Usher","email":"jusher@thewcs.org","phone": "718-782-9830"},
-{"ext": "136","room":"122","name":"Allison----Witkowski","email":"awitkowski@thewcs.org","phone": "718-782-9830"},
-{"ext": "137","room":"505","name":"Rosa----Yenque","email":"ryenque@thewcs.org","phone": "718-782-9830"},
-{"ext": "138","room":"127","name":"Silvia----Yenque","email":"syenque@thewcs.org","phone": "718-782-983"},
+{"ext": "112","room":"822","name":"Justin Usher","email":"jusher@thewcs.org","phone": "718-782-9830"},
+{"ext": "136","room":"122","name":"Allison Witkowski","email":"awitkowski@thewcs.org","phone": "718-782-9830"},
+{"ext": "137","room":"505","name":"Rosa Yenque","email":"ryenque@thewcs.org","phone": "718-782-9830"},
+{"ext": "138","room":"127","name":"Silvia Yenque","email":"syenque@thewcs.org","phone": "718-782-983"},
 
 ]
 
@@ -329,11 +329,6 @@ def signOut():
 		return ('Credentials successfully revoked.' )
 	else:
 		return('An error has occurred.' + printindexTable())
-	
-
-
-
-
 
 @views.route('/home')
 def home():
@@ -373,6 +368,81 @@ def user(id):
 		break
 	return flask.render_template("pages/users.html",user=selected_user, extension=extension)
 
+@views.route("/apps/clever")
+def cleverToken():
+
+	url = "https://wchs.instructure.com/api/v1/accounts/1/tabs"
+
+	headers = {
+		"accept": "application/json",
+		"Authorization": "Bearer 20701~Z1YOyellznoIN5fkeyqB7b8vLav65TWVXNn0R6Y2dBX0Fv1l3gEOzMQVqpORsI42"
+	}
+# d5d5927f-c6ff-33e3-8a30-bc5503511efd-U-1451
+	response = requests.get(url, headers=headers)
+	res_js = response.json()
+	print(res_js)
+	return flask.render_template("/pages/clever.html", id=res_js)
+
+@views.route("/dev/home")
+def devHome():
+
+	return flask.render_template("pages/.home.html")
+
+@views.route("dev/staff")
+def staff():
+	wchs_people = len(GWUser.query.all())
+	wchs_staff = GWUser.query.filter(GWUser.is_student == 0).all()
+	wchs_students = GWUser.query.filter(GWUser.is_student == 1).all()
+	print(f"Count {wchs_people}")
+	if wchs_people < 1:
+		try:
+			if 'credentials' not in flask.session:
+				return ('You need to <a href="/authorize">authorize </a> before accessing this page.')
+			getUserList()
+		except  HttpError:
+			print(f"Error getting people: {HttpError._get_reason}")
+
+	return flask.render_template("pages/staff/wchs_staff_list.html", wchs_staff=wchs_staff, wchs_students=wchs_students)
+
+@views.route("/u/<email>")
+def contactDetails(email):
+	try:
+		contact = GWUser.query.filter(GWUser.email == email).first()
+		json_contact = {
+			"id": contact.id,
+            "email": contact.email,
+            "is_admin": contact.is_admin,
+            "is_delegate_admin":contact.is_delegate_admin,
+    		"is_mailbox_setup": contact.is_mailbox_setup,
+    		"kind": contact.kind,
+    		"language": contact.language,
+    		"first_name": contact.first_name,
+    		"last_name": contact.last_name,
+    		"org_unit_path": contact.org_unit_path,
+    		"organizations": contact.organizations,
+    		"thumbnail_url": contact.thumbnail_url,
+    		"is_student": contact.is_student,
+			"extension": contact.extension
+        }
+		return json_contact
+	except HttpError:
+		print(f"ERROR finding user: {HttpError._get_reason()}")
+		return(f"Error finding user {email}")
+
+@views.route("/dev/support")
+def support():
+	a_headers = {
+      'Content-Type': 'application/json',
+      "X-API-KEY": "7c215afdf2a346df8469ba88dc909771",
+      "Access-Control-Allow-Origin": "*"
+    }
+	kb_res = requests.get("https://app.atera.com/api/v3/knowledgebases", headers=a_headers)	
+	api_response = json.loads(kb_res.text)
+	kb_items = api_response.get("items")
+	
+	return flask.render_template("pages/helpdesk/helpdesk.html", kb=kb_items)
+
+# FUNCTIONS
 def credentials_to_dict(credentials):
 	return {
 		'token': credentials.token,
@@ -456,8 +526,9 @@ def getAuth():
 	
 	credentials = Credentials(
 		**flask.session['credentials'])
-
-	if not credentials.valid or credentials.expired:
+	
+	print(f"ayo {credentials.token}")
+	if not credentials.token:
 		print("Wait a second")
 		return flask.redirect('logout')
 	
@@ -466,68 +537,6 @@ def getAuth():
 	admin_list = discovery.build("admin", "directory_v1", credentials=credentials,cache_discovery=True)
 	
 	return credentials
-
-@views.route("/apps/clever")
-def cleverToken():
-
-	url = "https://wchs.instructure.com/api/v1/accounts/1/tabs"
-
-	headers = {
-		"accept": "application/json",
-		"Authorization": "Bearer 20701~Z1YOyellznoIN5fkeyqB7b8vLav65TWVXNn0R6Y2dBX0Fv1l3gEOzMQVqpORsI42"
-	}
-# d5d5927f-c6ff-33e3-8a30-bc5503511efd-U-1451
-	response = requests.get(url, headers=headers)
-	res_js = response.json()
-	print(res_js)
-	return flask.render_template("/pages/clever.html", id=res_js)
-
-@views.route("/dev/home")
-def devHome():
-
-	return flask.render_template("pages/.home.html")
-
-@views.route("dev/staff")
-def staff():
-	wchs_people = len(GWUser.query.all())
-	wchs_staff = GWUser.query.filter(GWUser.is_student == 0).all()
-	wchs_students = GWUser.query.filter(GWUser.is_student == 1).all()
-	print(f"Count {wchs_people}")
-	if wchs_people < 1:
-		try:
-			if 'credentials' not in flask.session:
-				return ('You need to <a href="/authorize">authorize </a> before accessing this page.')
-			getUserList()
-		except  HttpError:
-			print(f"Error getting people: {HttpError._get_reason}")
-
-	return flask.render_template("pages/staff/wchs_staff_list.html", wchs_staff=wchs_staff, wchs_students=wchs_students)
-
-@views.route("/u/<email>")
-def contactDetails(email):
-	try:
-		contact = GWUser.query.filter(GWUser.email == email).first()
-		json_contact = {
-			"id": contact.id,
-            "email": contact.email,
-            "is_admin": contact.is_admin,
-            "is_delegate_admin":contact.is_delegate_admin,
-    		"is_mailbox_setup": contact.is_mailbox_setup,
-    		"kind": contact.kind,
-    		"language": contact.language,
-    		"first_name": contact.first_name,
-    		"last_name": contact.last_name,
-    		"org_unit_path": contact.org_unit_path,
-    		"organizations": contact.organizations,
-    		"thumbnail_url": contact.thumbnail_url,
-    		"is_student": contact.is_student,
-			"extension": contact.extension
-        }
-		return json_contact
-	except HttpError:
-		print(f"ERROR finding user: {HttpError._get_reason()}")
-		return(f"Error finding user {email}")
-# FUNCTIONS
 
 def getForms():
 		credentials=getAuth()
